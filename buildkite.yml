@@ -1,0 +1,18 @@
+steps:
+  - label: "Restore NuGet Packages"
+    command: "dotnet restore"
+  
+  - label: "Build"
+    command: "dotnet build --configuration Release"
+
+  # - label: "Run Tests"
+    # command: "dotnet test"
+
+  # - label: "Deploy to AWS Lambda"
+    # command: "serverless deploy"
+    # agents:
+    #   queue: "queue-name"
+
+  - wait
+
+  - label: ":rocket: Deployment Complete!"
