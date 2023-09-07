@@ -5,16 +5,13 @@ function wrapPromise<T>(promise: Promise<T>) {
         status: 'pending',
         response: null,
     }
-    console.log(promise);
   
     const suspender = promise.then(
       (res) => {
-        console.log(res)
         request.status = 'success';
         request.response = res;
       },
       (err) => {
-        console.log(err)
         request.status = 'error';
         request.response = err;
       },

@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
@@ -28,7 +23,6 @@ namespace TodoListApp.Controllers
           {
               return NotFound();
           }
-            await Task.Delay(2000);
             return await _context.TodoItems.ToListAsync();
         }
 
@@ -53,7 +47,7 @@ namespace TodoListApp.Controllers
         // PUT: api/TodoItems/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
+        public async Task<IActionResult> UpdateTodoItem(long id, TodoItem todoItem)
         {
             if (id != todoItem.Id)
             {
@@ -78,7 +72,12 @@ namespace TodoListApp.Controllers
                 }
             }
 
-            return NoContent();
+            if (!TodoItemExists(id))
+            {
+                return NotFound();
+            }
+
+            return Ok(await _context.TodoItems.FindAsync(id));
         }
 
         // POST: api/TodoItems
@@ -118,7 +117,8 @@ namespace TodoListApp.Controllers
 
         private bool TodoItemExists(long id)
         {
-            return (_context.TodoItems?.Any(e => e.Id == id)).GetValueOrDefault();
+            return _context.TodoItems.Any(e => e.Id == id);
         }
     }
 }
+
