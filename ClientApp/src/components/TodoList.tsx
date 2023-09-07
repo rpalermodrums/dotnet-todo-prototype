@@ -1,27 +1,18 @@
-import { useState, useEffect } from 'react';
+import fetchData from '../api/fetchData';
+import TodoItem from './TodoItem';
+import type { Todo } from '../types/Todo';
 
-interface ITodo {
-    id: number;
-    title: string;
-    completed: boolean;
-}
+const data = fetchData('/api/TodoItems');
 
 export default function TodoList() {
-    const [todos, setTodos] = useState<ITodo[]>([]);
+  const todos = data.read() || [];
 
-    useEffect(() => {
-        fetch('/api/Todos')
-            .then(response => response.json())
-            .then(data => setTodos(data));
-    }, []);
 
-    return (
-        <div>
-            {todos.map((todo) => (
-                <div key={todo.id}>
-                    {todo.title} - {todo.completed ? 'Completed' : 'Pending'}
-                </div>
-            ))}
-        </div>
-    );
+  return (
+    <div>
+      {todos.map((todo: Todo) => (
+        <TodoItem key={todo.id} todo={todo} />
+      ))}
+    </div>
+  );
 }
