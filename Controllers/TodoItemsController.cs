@@ -87,7 +87,7 @@ namespace TodoListApp.Controllers
         {
           if (_context.TodoItems == null)
           {
-              return Problem("Entity set 'TodoContext.TodoItems'  is null.");
+              return Problem("Entity set 'TodoContext.TodoItems' is null.");
           }
             _context.TodoItems.Add(todoItem);
             await _context.SaveChangesAsync();

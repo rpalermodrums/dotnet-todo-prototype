@@ -1,6 +1,9 @@
-import { Todo } from '../types/Todo';
 import { useState } from 'react';
+import { format } from 'date-fns';
+
+import { Todo } from '../types/Todo';
 import TodoForm from './TodoForm';
+import styles from './TodoItem.module.css';
 
 interface IProps {
   todoData: Todo;
@@ -20,12 +23,12 @@ export default function TodoItem ({todoData}: IProps) {
   };
 
   return (
-    <div key={todo.id}>
+    <div className={styles.todoItem}>
       {isEditing ? (
         <TodoForm initialTodo={todo} onClose={onClose} />
       ) : (
         <>
-          {todo.name} - {todo.isComplete ? 'Completed' : 'Pending'}
+          {todo.name} - {todo.isComplete ? 'Completed' : 'Pending'}{todo.dueDate && ` - Due: ${format(todo.dueDate, 'MMM d, yyyy')}`}
           <button onClick={handleEditClick}>🖉</button>
         </>
       )}

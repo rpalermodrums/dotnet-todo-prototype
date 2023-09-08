@@ -1,0 +1,25 @@
+.todoForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  .todoForm label {
+    align-self: flex-start;
+  }
+  .todoForm input,
+  .todoForm button {
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-left: 1rem;
+  }
+  .todoForm button {
+    color: white;
+    background-color: #646cff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }

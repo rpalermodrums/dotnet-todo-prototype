@@ -1,0 +1,24 @@
+# directories
+**/bin/
+**/obj/
+**/out/
+
+# files
+fly.toml
+Dockerfile*
+docker-compose*
+.dockerignore
+.git
+.gitignore
+.idea
+
+**/*.md
+
+# CI/CD
+.buildkite/
+
+# testing
+coverage
+
+# Frontend
+ClientApp/
